@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
-// import database
+import connectDB from './src/database/database';
 // import routes
 
 dotenv.config();
@@ -15,6 +15,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
+connectDB();
 
 app.get('/', (req, res) => {
     res.send('¡Hola! El servidor está funcionando correctamente 🎉');

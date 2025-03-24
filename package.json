@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel index.js -d dist",
     "start": "babel-node index.js",
-    "dev": "nodemon --exec babel-node index.js"    
+    "dev": "nodemon --exec babel-node index.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
