@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, 'El nombre del producto es obligatorio'],
     minlength: [3, 'El nombre debe tener al menos 3 caracteres'],
-    maxlength: [10, 'El nombre no puede superar los 10 caracteres'],
+    maxlength: [20, 'El nombre no puede superar los 10 caracteres'],
     trim: true,
   },
   description: {
@@ -14,6 +14,9 @@ const productSchema = new mongoose.Schema({
     minlength: [5, 'La descripción debe tener al menos 5 caracteres'],
     maxlength: [50, 'La descripción no puede superar los 50 caracteres'],
     trim: true,
+  },
+  image: {
+    type: String, 
   },
   category: {
     type: String,
@@ -48,16 +51,12 @@ const productSchema = new mongoose.Schema({
     required: [true, 'El proveedor es obligatorio'],
     trim: true,
   },
-  addedDate: {
+  createdAt: {
     type: Date,
     required: [true, 'La fecha de carga es obligatoria'],
     default: Date.now, 
   },
-  lastStockControlDate: {
-    type: Date,
-    default: null, 
-  },
-  lastUpdatedDate: {
+  updatedAt: {
     type: Date,
     default: null, 
   },
@@ -65,6 +64,10 @@ const productSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', 
     required: [true, 'El campo es obligatorio. Cada producto debe estar vinculado a un usuario'],
+  },
+  lastStockControlDate: {
+    type: Date,
+    default: null, 
   },
 });
 
