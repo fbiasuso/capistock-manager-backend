@@ -1,13 +1,42 @@
-import express from 'express';
-
-import usersController from '../controllers/usersController.js';
+import express from "express";
+import usersController from "../controllers/usersController.js";
+import authenticateUser from "../middlewares/authenticateUser.js";
+import authorizeRoles from "../middlewares/authorizeRoles.js";
 
 const router = express.Router();
 
-router.post('/', usersController.createUser);
-router.get('/', usersController.getAllUsers);
-router.get('/:id', usersController.getUserById);
-router.put('/:id', usersController.updateUser);
-router.patch('/:id', usersController.softDeleteUser);
+router.post(
+  "/", 
+  usersController.createUser);
+router.get(
+  "/",
+  authenticateUser,
+  authorizeRoles("administrator"),
+  usersController.getAllUsers
+);
+router.get(
+  "/:id",
+  authenticateUser,
+  authorizeRoles("administrator"),
+  usersController.getUserById
+);
+router.put(
+  "/:id",
+  authenticateUser,
+  authorizeRoles("administrator"),
+  usersController.updateUser
+);
+router.patch(
+  "/:id/soft-delete",
+  authenticateUser,
+  authorizeRoles("administrator"),
+  usersController.softDeleteUser
+);
+router.delete(
+  "/:id",
+  authenticateUser,
+  authorizeRoles("administrator"),
+  usersController.deleteUser
+);
 
 export default router;
